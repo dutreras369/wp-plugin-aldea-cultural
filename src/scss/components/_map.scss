@@ -1,23 +1,38 @@
-@use '../base/mixins' as m;
 @use '../base/variables' as v;
+@use '../base/mixins' as m;
 
-.aldea-map {
-  .aldea-map__frame {
-    position: relative;
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
+/* Contenedor del shortcode [aldea_mapa] */
+.aldea-mapa {
+  /* tarjeta simple con sombra y radio */
+  background: v.$color-bg;
+  border: 1px solid v.$color-border;
+  @include m.rounded(v.$radius-lg);
+  @include m.shadow(v.$shadow-soft);
 
-    iframe {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-  }
+  /* “lift” sutil al hover/focus, sin ser exagerado */
+  @include m.hover-lift;
 
-  &.edge-rounded .aldea-map__frame {
-    @include m.rounded(v.$radius-lg);
-    border: 1px solid v.$color-border;
+  /* separación vertical consistente con otros bloques */
+  margin-block: v.$space-6;
+  overflow: hidden;
+
+  /* Aspect ratio 16:9 para el mapa (responsive) */
+  position: relative;
+  aspect-ratio: 16 / 9;
+
+  iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
   }
 }
+
+/* Variante opcional con borde más marcado y radio en el frame */
+.aldea-mapa.edge-rounded {
+  border-color: color-mix(in oklab, v.$color-border, black 5%);
+}
+
+/* Espaciado extra si lo necesitas dentro de un .container */
+.container .aldea-mapa { margin-block: v.$space-6; }
