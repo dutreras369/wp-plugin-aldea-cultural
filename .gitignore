@@ -1,0 +1,19 @@
+# Dependencias y compilación SCSS
+node_modules/
+.sass-cache/
+*.map
+
+# Build CSS/JS generados (se pueden regenerar con npm run build)
+public/css/*
+public/js/*
+
+# Mantener un archivo vacío para que las carpetas existan
+!public/css/.gitkeep
+!public/js/.gitkeep
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de entorno
+.env
