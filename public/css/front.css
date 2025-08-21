@@ -1,0 +1,4 @@
+.aldea-grid{display:grid;gap:16px}
+.aldea-alianzas .card img{max-height:64px;object-fit:contain}
+.aldea-mapa iframe{width:100%;height:380px;border:0;border-radius:12px}
+.swiper-button-prev,.swiper-button-next{color:inherit}
