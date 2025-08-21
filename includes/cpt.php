@@ -27,15 +27,15 @@ function aldea_register_cpts() {
         'rewrite' => ['slug' => 'agenda'],
         'show_in_rest' => true,
     ]);
+    register_post_type('alianza', [
+        'label'         => 'Alianzas',
+        'public'        => true,
+        'menu_icon'     => 'dashicons-networking',
+        'has_archive'   => true,
+        'rewrite'       => ['slug' => 'alianzas'],
+        'supports'      => ['title','editor','thumbnail','revisions'],
+        'show_in_rest'  => false, // seguimos sin Gutenberg
+      ]);
 
-    register_post_type('noticia', [
-        'label' => 'Noticias',
-        'public' => true,
-        'menu_icon' => 'dashicons-megaphone',
-        'supports' => $supports,
-        'has_archive' => true,
-        'rewrite' => ['slug' => 'noticias'],
-        'show_in_rest' => true,
-    ]);
 }
 add_action('init','aldea_register_cpts');

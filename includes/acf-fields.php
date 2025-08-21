@@ -1,48 +1,146 @@
+
 <?php
 if ( ! defined('ABSPATH') ) exit;
 
+/**
+ * ACF local fields coherentes con shortcodes:
+ * - Taller: usado por [aldea_talleres]
+ * - Alianza: usado por [aldea_alianzas]
+ * - Post (actividades): galería usada por [aldea_slider] cuando no se pasan IDs
+ */
 add_action('acf/init', function(){
-  if( ! function_exists('acf_add_local_field_group') ) return;
+  if ( ! function_exists('acf_add_local_field_group') ) return;
 
-  // Taller
+  /**
+   * TALLER
+   * Campos que leen los shortcodes/listados de talleres.
+   */
   acf_add_local_field_group([
     'key' => 'group_taller',
     'title' => 'Ficha de Taller',
     'fields' => [
-      ['key'=>'taller_fecha','label'=>'Fecha','name'=>'fecha','type'=>'date_picker','display_format'=>'dd/mm/yyyy','return_format'=>'Y-m-d'],
-      ['key'=>'taller_hora','label'=>'Hora','name'=>'hora','type'=>'time_picker','display_format'=>'H:i','return_format'=>'H:i:s'],
-      ['key'=>'taller_lugar','label'=>'Lugar','name'=>'lugar','type'=>'text'],
-      ['key'=>'taller_valor','label'=>'Valor','name'=>'valor','type'=>'text'],
-      ['key'=>'taller_link','label'=>'Link inscripción (Google Form)','name'=>'link_inscripcion','type'=>'url'],
-      ['key'=>'taller_whatsapp','label'=>'WhatsApp (opcional)','name'=>'whatsapp','type'=>'text','instructions'=>'56912345678 (solo números)'],
-      ['key'=>'taller_destacado','label'=>'Destacado Home','name'=>'destacado','type'=>'true_false','ui'=>1],
-      ['key'=>'taller_galeria','label'=>'Galería de Imágenes','name'=>'galeria','type'=>'gallery','return_format'=>'array','preview_size'=>'medium'],
+      [
+        'key' => 'taller_fecha',
+        'label' => 'Fecha',
+        'name' => 'fecha',
+        'type' => 'date_picker',
+        'display_format' => 'dd/mm/yyyy',
+        'return_format'  => 'Y-m-d',
+      ],
+      [
+        'key' => 'taller_hora',
+        'label' => 'Hora',
+        'name' => 'hora',
+        'type' => 'time_picker',
+        'display_format' => 'H:i',
+        'return_format'  => 'H:i',
+      ],
+      [
+        'key' => 'taller_lugar',
+        'label' => 'Lugar',
+        'name' => 'lugar',
+        'type' => 'text',
+        'placeholder' => 'Sala / Dirección',
+      ],
+      [
+        'key' => 'taller_valor',
+        'label' => 'Valor',
+        'name' => 'valor',
+        'type' => 'text',
+        'placeholder' => '$',
+      ],
+      [
+        'key' => 'taller_link',
+        'label' => 'Link inscripción (Google Form)',
+        'name' => 'link_inscripcion',
+        'type' => 'url',
+        'instructions' => 'Si se completa, el botón mostrará “Inscribirse” y usará este link.',
+        'placeholder' => 'https://docs.google.com/forms/...',
+      ],
+      [
+        'key' => 'taller_whatsapp',
+        'label' => 'WhatsApp (opcional)',
+        'name' => 'whatsapp',
+        'type' => 'text',
+        'instructions' => 'Usado sólo si no hay link de inscripción. Formato: 56912345678 (sólo números).',
+        'placeholder' => '56912345678',
+      ],
+      [
+        'key' => 'taller_destacado',
+        'label' => 'Destacado en Home',
+        'name' => 'destacado',
+        'type' => 'true_false',
+        'ui'   => 1,
+      ],
+      [
+        'key' => 'taller_galeria',
+        'label' => 'Galería de Imágenes',
+        'name' => 'galeria',
+        'type' => 'gallery',
+        'return_format' => 'array',      // ← el slider lee $img['ID']
+        'preview_size'  => 'medium',
+        'instructions'  => 'Usada por carruseles o lightbox en la ficha/slider.',
+      ],
     ],
     'location' => [[['param'=>'post_type','operator'=>'==','value'=>'taller']]],
     'position' => 'acf_after_title',
   ]);
 
-  // Alianza
+  /**
+   * ALIANZA
+   * Mapeado para el grid [aldea_alianzas]: logo (ID) + URL + descripción.
+   */
   acf_add_local_field_group([
     'key' => 'group_alianza',
     'title' => 'Ficha de Alianza',
     'fields' => [
-      ['key'=>'alianza_url','label'=>'Sitio / Enlace','name'=>'url','type'=>'url'],
-      ['key'=>'alianza_logo','label'=>'Logo','name'=>'logo','type'=>'image','return_format'=>'id','preview_size'=>'medium'],
-      ['key'=>'alianza_breve','label'=>'Descripción breve','name'=>'breve','type'=>'textarea','rows'=>3],
+      [
+        'key' => 'alianza_url',
+        'label' => 'Sitio / Enlace',
+        'name' => 'url',
+        'type' => 'url',
+        'placeholder' => 'https://…',
+      ],
+      [
+        'key' => 'alianza_logo',
+        'label' => 'Logo',
+        'name' => 'logo',
+        'type' => 'image',
+        'return_format' => 'id',         // ← usamos wp_get_attachment_image( ID )
+        'preview_size'  => 'medium',
+      ],
+      [
+        'key' => 'alianza_breve',
+        'label' => 'Descripción breve',
+        'name' => 'breve',
+        'type' => 'textarea',
+        'rows' => 3,
+      ],
     ],
     'location' => [[['param'=>'post_type','operator'=>'==','value'=>'alianza']]],
     'position' => 'acf_after_title',
   ]);
 
-  // Posts (actividades): galería extra para slider
+  /**
+   * POST (actividades)
+   * Galería para el slider [aldea_slider] cuando no se pasan IDs.
+   */
   acf_add_local_field_group([
     'key' => 'group_post_galeria',
     'title' => 'Galería (Slider del post)',
     'fields' => [
-      ['key'=>'post_galeria','label'=>'Imágenes','name'=>'galeria','type'=>'gallery','return_format'=>'array','preview_size'=>'medium'],
+      [
+        'key' => 'post_galeria',
+        'label' => 'Imágenes',
+        'name' => 'galeria',
+        'type' => 'gallery',
+        'return_format' => 'array',      // ← el shortcode espera array con ['ID']
+        'preview_size'  => 'medium',
+        'instructions'  => 'Si no pasas IDs en [aldea_slider], tomará estas imágenes.',
+      ],
     ],
     'location' => [[['param'=>'post_type','operator'=>'==','value'=>'post']]],
     'position' => 'acf_after_title',
   ]);
 });
+
