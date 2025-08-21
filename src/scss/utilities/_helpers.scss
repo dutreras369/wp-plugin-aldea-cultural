@@ -1,0 +1,11 @@
+@use '../base/mixins' as m;
+@use '../base/variables' as v;
+
+.is-card    { @include m.card; }
+.is-rounded { @include m.rounded(); }
+.is-shadow  { @include m.shadow(); }
+
+.u-muted  { color: v.$color-muted; }
+.u-center { text-align: center; }
+.u-py-4   { padding-block: v.$space-4; }
+.u-mb-3   { margin-bottom: v.$space-3; }

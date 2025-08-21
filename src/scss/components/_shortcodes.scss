@@ -1,0 +1,27 @@
+@use '../base/mixins' as m;
+@use '../base/variables' as v;
+
+.aldea-sc {
+  margin-block: v.$space-6;
+
+  &__inner {
+    @include m.rounded(v.$radius-lg);
+    overflow: hidden;
+    @include m.hover-lift;
+    background: v.$color-bg;
+    border: 1px solid v.$color-border;
+  }
+
+  &__header {
+    padding: v.$space-3 v.$space-4 v.$space-2;
+    border-bottom: 1px solid v.$color-border;
+    background: linear-gradient(180deg, rgba(0,0,0,.02), rgba(0,0,0,0));
+  }
+
+  &__title {
+    margin: 0;
+    font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+    font-weight: 700;
+    color: v.$color-text;
+  }
+}

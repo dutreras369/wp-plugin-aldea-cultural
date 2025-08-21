@@ -1,0 +1,12 @@
+{
+    "name": "aldea-core",
+    "private": true,
+    "devDependencies": {
+      "sass": "^1.77.0"
+    },
+    "scripts": {
+      "build:css": "sass src/scss/front.scss public/css/front.css --style=compressed",
+      "watch:css": "sass --watch src/scss/front.scss:public/css/front.css --style=expanded"
+    }
+  }
+  
