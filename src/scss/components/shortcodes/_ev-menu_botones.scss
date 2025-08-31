@@ -1,0 +1,27 @@
+.ev-botonera-footer {
+    margin: 2rem 0;
+  
+    .ev-boton-tab {
+      background-color: white;
+      border-radius: 0.5rem;
+      padding: 0.6rem 1.3rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+      }
+  
+      &.active {
+        background-color: white;;
+        color: var(--bs-secondary);
+
+        color: white;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        pointer-events: none;
+      }
+    }
+  }
+  

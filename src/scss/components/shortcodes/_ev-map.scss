@@ -1,0 +1,56 @@
+@use '../base/variables' as v;
+@use '../base/mixins' as m;
+
+/* Bloque base */
+.aldea-sc { width: 100%; margin-block: v.$space-6; }
+
+.aldea-sc__inner {
+  background: v.$color-bg;
+  border: 1px solid v.$color-border;
+  @include m.rounded(v.$radius-lg);
+  @include m.shadow(v.$shadow-soft);
+  @include m.hover-lift;
+  overflow: hidden;
+}
+
+/* Cabecera centrada */
+.aldea-sc__header { text-align: center; padding: v.$space-4 v.$space-4 v.$space-3; }
+.aldea-sc__title  { margin: 0; font-weight: 800; color: v.$color-text;
+  font-size: clamp(1.25rem, 2.2vw + .5rem, 2rem);
+}
+
+/* Frame responsivo */
+.aldea-map {
+  .aldea-map__frame {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+
+    iframe {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; border: 0;
+    }
+  }
+
+  /* Altura un poco más cuadrada en móviles */
+  @media (max-width: 576px) {
+    .aldea-map__frame { aspect-ratio: 4 / 3; }
+  }
+  @media (min-width: 1200px) {
+    .aldea-map__frame { aspect-ratio: 21 / 9; }
+  }
+}
+
+/* Variante full-bleed (ancho completo de viewport) */
+.aldea-map.is-full-bleed {
+  position: relative;
+  left: 50%; right: 50%;
+  margin-left: -50vw; margin-right: -50vw;
+  width: 100vw;
+
+  /* bordes suaves aún visibles en full-bleed */
+  .aldea-sc__inner { border-radius: 0; }
+}
+
+/* Cuando el tema envuelve en .container, mantenemos buen espaciado */
+.container .aldea-map:not(.is-full-bleed) { margin-block: v.$space-6; }

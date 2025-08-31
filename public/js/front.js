@@ -1,7 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
   // AOS
-  if (typeof AOS !== 'undefined') AOS.init({ once: true, duration: 700, offset: 80 });
-
+  if (window.AOS && typeof AOS.init === 'function') {
+    AOS.init({ once: true, duration: 700, offset: 80 });
+  }
+  
   // GLightbox
   if (typeof GLightbox !== 'undefined') {
     GLightbox({ selector: '.glightbox' });
