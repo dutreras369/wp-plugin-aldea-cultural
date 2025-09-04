@@ -1,0 +1,67 @@
+.ev-talleres {
+    padding: 3rem 0;
+  
+    .section-header {
+      h2 { font-weight: 700; color: var(--bs-dark); }
+      p  { max-width: 720px; margin: 0 auto; color: var(--bs-secondary); }
+    }
+  
+    .ev-taller-card {
+      border: 0;
+      border-radius: 1rem;
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(0,0,0,.06);
+      overflow: hidden;
+      transition: transform .25s ease, box-shadow .25s ease;
+  
+      &:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 14px 32px rgba(0,0,0,.12);
+      }
+    }
+  
+    .ev-taller-thumb {
+      aspect-ratio: 16/9;
+      object-fit: cover;
+    }
+  
+    .ev-taller-meta {
+      margin: .25rem 0 1rem;
+      li + li { margin-top: .15rem; }
+      strong { font-weight: 700; }
+    }
+  
+    /* Botón primario “bonito” y variante outline (para WhatsApp) */
+    .btn-ev, .btn-ev-outline {
+      --ev-bg: #0d6efd;           /* integra con Bootstrap primary */
+      --ev-bg-soft: rgba(13,110,253,.12);
+      --ev-shadow: 0 6px 18px rgba(13,110,253,.25);
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      border-radius: 999px;
+      padding: .5rem 1rem;
+      font-weight: 600;
+      .icon { transition: transform .18s ease; }
+      &:hover .icon { transform: translateX(2px) translateY(-1px); }
+      &:focus-visible { outline: 0; box-shadow: 0 0 0 3px var(--ev-bg-soft); }
+    }
+  
+    .btn-ev {
+      border: 1px solid var(--ev-bg);
+      background: linear-gradient(180deg, var(--ev-bg), #0b5ed7);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(13,110,253,.22);
+      transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+      &:hover { transform: translateY(-2px); box-shadow: var(--ev-shadow); text-decoration: none; }
+      &:active { transform: translateY(0); filter: brightness(.95); }
+    }
+  
+    .btn-ev-outline {
+      border: 1px solid var(--ev-bg);
+      color: var(--ev-bg);
+      background: #fff;
+      &:hover { background: var(--ev-bg); color: #fff; text-decoration: none; }
+    }
+  }
+  

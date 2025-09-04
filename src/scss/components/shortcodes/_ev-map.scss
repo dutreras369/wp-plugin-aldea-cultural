@@ -1,5 +1,5 @@
-@use '../base/variables' as v;
-@use '../base/mixins' as m;
+@use '../../base/variables' as v;
+@use '../../base/mixins' as m;
 
 /* Bloque base */
 .aldea-sc { width: 100%; margin-block: v.$space-6; }

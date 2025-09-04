@@ -13,14 +13,14 @@ function aldea_register_cpts() {
         'public' => true,
         'menu_icon' => 'dashicons-welcome-learn-more',
         'supports' => $supports,
-        'has_archive' => true,
-        'rewrite' => ['slug' => 'talleres'],
+        'has_archive' => false,
+        'rewrite' => ['slug' => 'taller'],
         'show_in_rest' => true,
     ]);
 
     register_post_type('evento', [
         'label' => 'Eventos',
-        'public' => true,
+        'public' => false,
         'menu_icon' => 'dashicons-calendar-alt',
         'supports' => $supports,
         'has_archive' => true,
@@ -31,8 +31,8 @@ function aldea_register_cpts() {
         'label'         => 'Alianzas',
         'public'        => true,
         'menu_icon'     => 'dashicons-networking',
-        'has_archive'   => true,
-        'rewrite'       => ['slug' => 'alianzas'],
+        'has_archive'   => false,
+        'rewrite'       => ['slug' => 'alianza'],
         'supports'      => ['title','editor','thumbnail','revisions'],
         'show_in_rest'  => false, // seguimos sin Gutenberg
       ]);

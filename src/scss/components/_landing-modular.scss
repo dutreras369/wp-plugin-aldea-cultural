@@ -1,0 +1,135 @@
+@use '../base/mixins' as m;
+@use '../base/variables' as v;
+
+.landing-hero {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding: 120px 20px;
+  min-height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  .landing-hero-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 140vw; // full screen efecto
+    max-width: none;
+    transform: translate(-50%, -50%);
+    opacity: 0.3;
+    z-index: 0;
+    pointer-events: none;
+    filter: drop-shadow(0 0 80px rgba(0, 0, 0, 0.4));
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    background: rgba(20, 20, 40, 0.6);
+    padding: 40px;
+    border-radius: 16px;
+    max-width: 800px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    p {
+      font-size: 1.4rem;
+      color: #ddd;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 80px 16px;
+    min-height: 60vh;
+
+    .landing-hero-bg {
+      width: 180vw;
+    }
+
+    .container {
+      padding: 24px;
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+.landing-intro {
+  padding: 60px 20px;
+  background-color: #fff;
+
+  .landing-columns {
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .landing-block {
+    flex: 1 1 calc(33.333% - 20px);
+    background: #f9f9f9;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    transition: transform 0.3s ease;
+
+    h2 {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: v.$color-primary;
+
+      i {
+        font-size: 1.4rem;
+        color: #6a0dad;
+      }
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    &:hover {
+      transform: translateY(-5px);
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .landing-columns {
+      flex-direction: column;
+    }
+
+    .landing-block {
+      flex: 1 1 100%;
+    }
+  }
+}
+
+.landing-content {
+  padding: 60px 20px;
+  background-color: #f9f9f9;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
