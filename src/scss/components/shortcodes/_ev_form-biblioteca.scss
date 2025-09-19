@@ -1,0 +1,60 @@
+@use '../../base/variables' as v;
+@use '../../base/mixins' as m;
+
+.aldea-form {
+  .aldea-sc__inner { padding: 20px 22px; }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: .95rem;
+
+      &.is-full { grid-column: 1 / -1; }
+
+      span { font-weight: 600; }
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid v.$color-border;
+      border-radius: 10px;
+      outline: none;
+      transition: border-color .2s ease, box-shadow .2s ease;
+
+      &:focus {
+        border-color: v.$color-primary;
+        box-shadow: 0 0 0 3px rgba(13,110,253,.15);
+      }
+    }
+  }
+
+  &__consent {
+    font-size: .9rem;
+    align-items: center;
+    gap: 8px;
+
+    input[type="checkbox"] {
+      width: 1.1rem; height: 1.1rem;
+      accent-color: v.$color-primary;
+    }
+  }
+
+  &__actions {
+    display: flex; gap: 12px; align-items: center; margin-top: 8px;
+  }
+
+  &__status {
+    font-size: .9rem; color: #555;
+  }
+
+  @media (max-width: 680px) {
+    &__grid { grid-template-columns: 1fr; }
+  }
+}
